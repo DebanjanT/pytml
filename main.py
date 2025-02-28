@@ -20,8 +20,12 @@ from vnode import Vnode
 
 
 def main():
-    fnode = Vnode(dtype="Div")
-    print(fnode)
+    from html_elem import Div  # Lcoal import
+
+    div = Div()
+    print(div.id, "\n")
+    fnode = Vnode(dtype=Div)
+    print(fnode, "\n")
     print(fnode.print_tree())
 
 

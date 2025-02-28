@@ -1,19 +1,23 @@
 from dataclasses import dataclass
-from typing import Union, TYPE_CHECKING
+from typing import Type, Union, TYPE_CHECKING
 from tabulate import tabulate
 
 if TYPE_CHECKING:
     from html_elem import Div, Body
 
-HtmlElementType = Union["Div", "Body"]
+HTML_ELEM_TYPE = Union["Div", "Body"]
 
 
 @dataclass()
 class Vnode:
-    dtype: HtmlElementType
+    dtype: HTML_ELEM_TYPE  # choose any type among the list of  html element type
 
-    def __init__(self, dtype):
+    def __init__(self, dtype: Type[HTML_ELEM_TYPE]):
+        from html_elem import Div, Body
+
         self.dtype = dtype
+        if not isinstance(dtype, type) or not issubclass(dtype, (Div, Body)):
+            raise TypeError(f"dtype must be a subclass of Div or Body, got {dtype}")
 
     def print_tree(self):
         print(
