@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Type, Union, TYPE_CHECKING
 from tabulate import tabulate
 
+
 if TYPE_CHECKING:
     from html_elem import Div, Body
 
